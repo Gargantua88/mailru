@@ -1,0 +1,13 @@
+<div style="padding:1%">
+  <div style="font-size:larger;margin-bottom:1%">
+    <%= link_to "Отсортировать по времени начала занятий", root_path(sort: true) %>
+  </div>
+  <% @courses.each do |course| %>
+    <div>
+      <%= link_to "Курс: #{course.name}", course_path(course.id) %><br>
+      <%= "Ближайший старт: #{course.earliest_start_time}" %><br>
+      <%= "Количество студентов: #{course.students_count}" %>
+    </div>
+    <br>
+  <% end %>
+</div>

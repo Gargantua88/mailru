@@ -1,0 +1,13 @@
+<div style="padding:1%;width:30%">
+  <%= "Курс: #{@course.name}"%><br>
+  <% @groups.each do |group| %>
+    <%= "Группа стартует: #{group.start_time}" %><br>
+    <%= "Студенты: #{group.students.pluck(:email)}" %><br><br>
+
+    <%= form_with url: '/students' do |f| %>
+      <%= f.hidden_field :group_id, value: group.id %>
+      <%= f.text_field :email, placeholder: 'Укажите свой email' %>
+      <%= f.submit "Записаться" %>
+    <% end %>
+  <% end %>
+</div>
