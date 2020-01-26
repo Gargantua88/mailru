@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
     @group = Group.find(student_params[:group_id])
     @course = @group.course
 
-    if @student.persisted? && !user_already_enrolled?
+    if @student.persisted? && !student_already_enrolled?
       @student.groups << @group
 
       redirect_to course_path(@course.id), notice: 'Успешно записаны!'
@@ -20,7 +20,7 @@ class StudentsController < ApplicationController
     params.permit(:email, :group_id)
   end
 
-  def user_already_enrolled?
+  def student_already_enrolled?
     @course.students.include?(@student)
   end
 end
